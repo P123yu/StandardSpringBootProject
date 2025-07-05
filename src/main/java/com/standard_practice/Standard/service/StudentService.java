@@ -1,12 +1,14 @@
 package com.standard_practice.Standard.service;
 
+import com.standard_practice.Standard.co.StudentCo;
+import com.standard_practice.Standard.dto.StudentDto;
 import com.standard_practice.Standard.model.Student;
 import org.springframework.stereotype.Service;
 
 @Service
 public interface StudentService {
 
-    Student createStudent(Student student);
+    StudentDto createStudent(StudentCo studentCo);
 
-    Student getStudentById(Long id);
+    StudentDto getStudentById(Long id);
 }

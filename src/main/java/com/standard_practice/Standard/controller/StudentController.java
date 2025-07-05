@@ -1,5 +1,7 @@
 package com.standard_practice.Standard.controller;
 
+import com.standard_practice.Standard.co.StudentCo;
+import com.standard_practice.Standard.dto.StudentDto;
 import com.standard_practice.Standard.model.Student;
 import com.standard_practice.Standard.service.StudentService;
 import com.standard_practice.Standard.util.ResponseUtil;
@@ -18,10 +20,10 @@ public class StudentController {
     private StudentService studentService;
 
     @PostMapping("/add")
-    public ResponseEntity<ResponseUtil<Student>> createStudent(@Valid @RequestBody Student student) {
-        Student savedUser = studentService.createStudent(student);
+    public ResponseEntity<ResponseUtil<StudentDto>> createStudent(@Valid @RequestBody StudentCo studentCo) {
+        StudentDto savedUser = studentService.createStudent(studentCo);
 
-        ResponseUtil<Student> response = ResponseUtil.<Student>builder()
+        ResponseUtil<StudentDto> response = ResponseUtil.<StudentDto>builder()
                 .status(HttpStatus.CREATED.value()) // Set status 201 in body
                 .success(true)
                 .message("Student created successfully")
@@ -34,10 +36,10 @@ public class StudentController {
 
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<ResponseUtil<Student>> getStudentById(@PathVariable Long id) {
-        Student savedUser = studentService.getStudentById(id);
+    public ResponseEntity<ResponseUtil<StudentDto>> getStudentById(@PathVariable Long id) {
+        StudentDto savedUser = studentService.getStudentById(id);
 
-        ResponseUtil<Student> response = ResponseUtil.<Student>builder()
+        ResponseUtil<StudentDto> response = ResponseUtil.<StudentDto>builder()
                 .status(HttpStatus.OK.value()) // Set status 200 in body
                 .success(true)
                 .message("Student fetched successfully")

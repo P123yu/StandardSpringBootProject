@@ -46,13 +46,13 @@ public class GlobalExceptionHandler {
         return buildResponse("Bad input: " + ex.getMessage(), HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST);
     }
 
-//    @ExceptionHandler(MethodArgumentNotValidException.class)
-//    public ResponseEntity<ResponseUtil<Object>> handleValidation(MethodArgumentNotValidException ex) {
-//        String errorMsg = ex.getBindingResult().getFieldErrors().stream()
-//                .map(err -> err.getField() + ": " + err.getDefaultMessage())
-//                .collect(Collectors.joining(", "));
-//        return buildResponse("Validation failed: " + errorMsg, HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST);
-//    }
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ResponseUtil<Object>> handleValidation(MethodArgumentNotValidException ex) {
+        String errorMsg = ex.getBindingResult().getFieldErrors().stream()
+                .map(err -> err.getField() + ": " + err.getDefaultMessage())
+                .collect(Collectors.joining(", "));
+        return buildResponse("Validation failed: " + errorMsg, HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST);
+    }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     public ResponseEntity<ResponseUtil<Object>> handleMethodNotAllowed(HttpRequestMethodNotSupportedException ex) {
